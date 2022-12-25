@@ -3,17 +3,23 @@ const bodyParser = require("body-parser");
 const _ = require("lodash");
 require("dotenv").config();
 const mongoose = require("mongoose");
-const username = process.env.DATABASE_USERNAME;
-const password = process.env.DATABASE_PASSWORD;
 ////////////////////////////////// mongoose DB /////////////////////////////////////////
 mongoose.set("strictQuery", true);
-mongoose.connect(
+const url =
   "mongodb+srv://" +
-    username +
-    ":" +
-    password +
-    "@cluster0.fzfjyqq.mongodb.net/BlogDB"
-);
+  process.env.DATABASE_USERNAME +
+  ":" +
+  process.env.DATABASE_PASSWORD +
+  "@cluster0.fzfjyqq.mongodb.net/TodoListDB?authSource=admin";
+
+mongoose
+  .connect(url)
+  .then(() => {
+    console.log("Connected to database !!");
+  })
+  .catch((err) => {
+    console.log("Connection failed !! " + err.message);
+  });
 const postsSchema = new mongoose.Schema({
   title: String,
   content: String,
