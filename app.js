@@ -10,7 +10,7 @@ const url =
   process.env.DATABASE_USERNAME +
   ":" +
   process.env.DATABASE_PASSWORD +
-  "@cluster0.fzfjyqq.mongodb.net/TodoListDB?authSource=admin";
+  "@cluster0.fzfjyqq.mongodb.net/BlogDB?authSource=admin";
 
 mongoose
   .connect(url)
